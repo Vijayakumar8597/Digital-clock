@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital timer</title>
+    <style>
+        .clock {
+            font-size: 150px;
+            width: auto;
+            margin: 100px;
+            margin-left: 120px;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 25px;
+            color: red;
+            background-color: black;
+        }
+        #timer{
+            font-size: 70px;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 25px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p id="timer">=>Digital clock<=</p>
+    <div class="clock"><div id="clock">08:50:10</div>
+
+    <script>
+        setInterval(showTime,10);
+        function showTime() {
+            let time = new Date();
+            let hour = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+            let ms = time.getMilliseconds();
+            
+            am_pm = "AM";
+
+            if (hour > 12){
+                hour -= 12;
+
+                am_pm = "PM";
+            }
+            if (hour==0){
+                hour = 12;
+
+                am_pm = "AM";
+            }
+        
+            hour = hour < 10 ? "0" + hour : hour;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+            ms = Math.round(ms/100 );
+            ms = ms < 10 ? "0" + ms :ms;
+
+
+            let cu = hour + ":" + min + ":" + sec + ":"+ ms + am_pm;
+
+            document.getElementById("clock").innerHTML = cu;
+
+        }
+        showTime();
+    </script>
+</body>
+</html>
